@@ -14,6 +14,10 @@ namespace Health_Managment_System.Services
         Task<User> AuthenticateAsync(string username, string password);
         Task RegisterAsync(User user);
         Task<List<Role>> GetRolesAsync();
+        Task<List<User>> GetAllUsersAsync();
+        Task<User> GetUserByIdAsync(int id);
+        Task<User> GetUserByNameAsync(string username);
+        Task DeleteUserAsync(int id);
     }
 
     public class UserService : IUserService
@@ -43,10 +47,6 @@ namespace Health_Managment_System.Services
                 throw new Exception("Username is already taken.");
             }
 
-            if (await _context.Users.AnyAsync(u => u.Email == user.Email))
-            {
-                throw new Exception("Email is already registered.");
-            }
 
             user.PasswordHash = BCrypt.Net.BCrypt.HashPassword(user.PasswordHash);
             _context.Users.Add(user);
@@ -61,6 +61,24 @@ namespace Health_Managment_System.Services
         public async Task<List<Role>> GetRolesAsync()
         {
             return await _context.Roles.ToListAsync();
+        }
+
+        public Task<User> GetUserByIdAsync(int id)
+        {
+            //TODO: Implement this
+            throw new NotImplementedException();
+        }
+
+        public Task<User> GetUserByNameAsync(string username)
+        {
+            //TODO: Implement this
+            throw new NotImplementedException();
+        }
+
+        public Task DeleteUserAsync(int id)
+        {
+            //TODO: Implement this
+            throw new NotImplementedException();
         }
     }
 
