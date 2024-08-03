@@ -1,23 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
+﻿// Forms/RegistrationForm.cs
+using System;
 using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Health_Managment_System.Services;
 using HealthcareManagementSystem.Models;
-using Microsoft.VisualBasic.ApplicationServices;
-
 
 namespace Health_Managment_System.Forms
 {
     public partial class RegistrationForm : Form
     {
         private readonly IUserService _userService;
+
         public RegistrationForm(IUserService userService)
         {
             _userService = userService;
@@ -31,19 +24,24 @@ namespace Health_Managment_System.Forms
 
         private async void btnRegister_Click(object sender, EventArgs e)
         {
-            //TODO: Implement registration check if the username is already taken and stuff
-
             var username = txtUsername.Text;
             var password = txtPassword.Text;
-            var role = cmbRole.Text;
             var confirmPassword = txtConfirmPassword.Text;
             var email = txtEmail.Text;
+            var firstName = txtFirstName.Text;
+            var lastName = txtLastName.Text;
+            var dateOfBirth = dtpDateOfBirth.Value;
+            var address = txtAddress.Text;
+            var phoneNumber = txtPhoneNumber.Text;
+            var role = cmbRole.Text;
 
-            if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password) || string.IsNullOrWhiteSpace(role))
+            if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password) || string.IsNullOrWhiteSpace(confirmPassword) || string.IsNullOrWhiteSpace(email) ||
+                string.IsNullOrWhiteSpace(firstName) || string.IsNullOrWhiteSpace(lastName) || string.IsNullOrWhiteSpace(address) || string.IsNullOrWhiteSpace(phoneNumber) || string.IsNullOrWhiteSpace(role))
             {
                 MessageBox.Show("Please fill in all fields.");
                 return;
             }
+
             if (username.Length < 4 || password.Length < 4)
             {
                 MessageBox.Show("Username and password must be at least 4 characters long.");
@@ -56,25 +54,27 @@ namespace Health_Managment_System.Forms
                 return;
             }
 
-            if (string.IsNullOrWhiteSpace(email) || !email.Contains("@"))
-            {
-                MessageBox.Show("Please enter a valid email address.");
-                return;
-            }
-
-            
             if (!(role == "Doctor" || role == "Patient" || role == "Nurse"))
             {
-                MessageBox.Show("Please select a role.");
+                MessageBox.Show("Please select a valid role.");
                 return;
             }
 
-            var user = new HealthcareManagementSystem.Models.User
+            var user = new User
             {
                 Username = username,
                 PasswordHash = password,  // Hashing will be done in the UserService
                 Role = role,
-                //Email = email
+                Email = email,
+                PatientRecord = new PatientRecord
+                {
+                    FirstName = firstName,
+                    LastName = lastName,
+                    DateOfBirth = dateOfBirth,
+                    Address = address,
+                    PhoneNumber = phoneNumber,
+                    Email = email
+                }
             };
 
             try
@@ -92,7 +92,11 @@ namespace Health_Managment_System.Forms
             }
 
             this.Close();
+        }
 
+        private void dtpDateOfBirth_ValueChanged(object sender, EventArgs e)
+        {
+                
         }
     }
 }
