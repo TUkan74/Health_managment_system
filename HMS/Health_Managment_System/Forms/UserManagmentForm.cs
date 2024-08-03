@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Health_Managment_System.Forms
 {
-    public partial class UserManagment : Form
+    public partial class UserManagmentForm : Form
     {
-        public UserManagment()
+        public UserManagmentForm()
         {
             InitializeComponent();
         }

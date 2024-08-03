@@ -48,23 +48,24 @@ namespace Health_Managment_System.Forms
             }
 
 
-            /*var user = await _userService.AuthenticateAsync(username, password);
+            var user = await _userService.AuthenticateAsync(username, password);
             if (user != null)
             {
                 // Open main form and close login form
                 var mainForm = new MainForm(user);
-                mainForm.Show();
                 this.Hide();
+                mainForm.ShowDialog();
+                this.Show();                
             }
             else
             {
                 MessageBox.Show("Invalid username or password.");
-            }*/
+            }
 
-            this.Hide();
+            /*this.Hide();
             MainForm mainForm = new MainForm();
             mainForm.ShowDialog();
-            this.Show();
+            this.Show();*/
         }
 
         /// <summary>
