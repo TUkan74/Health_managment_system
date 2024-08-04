@@ -24,6 +24,106 @@ namespace Health_Managment_System.Forms
 
         private async void btnRegister_Click(object sender, EventArgs e)
         {
+            bool hasError = false;
+
+            // Check each field and change the background color if empty
+            if (string.IsNullOrWhiteSpace(txtUsername.Text))
+            {
+                txtUsername.BackColor = Color.Red;
+                hasError = true;
+            }
+            else
+            {
+                txtUsername.BackColor = Color.White;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtPassword.Text))
+            {
+                txtPassword.BackColor = Color.Red;
+                hasError = true;
+            }
+            else
+            {
+                txtPassword.BackColor = Color.White;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtConfirmPassword.Text))
+            {
+                txtConfirmPassword.BackColor = Color.Red;
+                hasError = true;
+            }
+            else
+            {
+                txtConfirmPassword.BackColor = Color.White;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtEmail.Text))
+            {
+                txtEmail.BackColor = Color.Red;
+                hasError = true;
+            }
+            else
+            {
+                txtEmail.BackColor = Color.White;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtFirstName.Text))
+            {
+                txtFirstName.BackColor = Color.Red;
+                hasError = true;
+            }
+            else
+            {
+                txtFirstName.BackColor = Color.White;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtLastName.Text))
+            {
+                txtLastName.BackColor = Color.Red;
+                hasError = true;
+            }
+            else
+            {
+                txtLastName.BackColor = Color.White;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtAddress.Text))
+            {
+                txtAddress.BackColor = Color.Red;
+                hasError = true;
+            }
+            else
+            {
+                txtAddress.BackColor = Color.White;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtPhoneNumber.Text))
+            {
+                txtPhoneNumber.BackColor = Color.Red;
+                hasError = true;
+            }
+            else
+            {
+                txtPhoneNumber.BackColor = Color.White;
+            }
+
+            if (string.IsNullOrWhiteSpace(cmbRole.Text))
+            {
+                cmbRole.BackColor = Color.Red;
+                hasError = true;
+            }
+            else
+            {
+                cmbRole.BackColor = Color.White;
+            }
+
+            // Show message box if there is an error
+            if (hasError)
+            {
+                MessageBox.Show("Please fill in all fields.");
+                return;
+            }
+
             var username = txtUsername.Text;
             var password = txtPassword.Text;
             var confirmPassword = txtConfirmPassword.Text;
@@ -34,13 +134,6 @@ namespace Health_Managment_System.Forms
             var address = txtAddress.Text;
             var phoneNumber = txtPhoneNumber.Text;
             var role = cmbRole.Text;
-
-            if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password) || string.IsNullOrWhiteSpace(confirmPassword) || string.IsNullOrWhiteSpace(email) ||
-                string.IsNullOrWhiteSpace(firstName) || string.IsNullOrWhiteSpace(lastName) || string.IsNullOrWhiteSpace(address) || string.IsNullOrWhiteSpace(phoneNumber) || string.IsNullOrWhiteSpace(role))
-            {
-                MessageBox.Show("Please fill in all fields.");
-                return;
-            }
 
             if (username.Length < 4 || password.Length < 4)
             {
@@ -93,6 +186,7 @@ namespace Health_Managment_System.Forms
 
             this.Close();
         }
+
 
         private void dtpDateOfBirth_ValueChanged(object sender, EventArgs e)
         {
