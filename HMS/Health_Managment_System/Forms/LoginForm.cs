@@ -52,10 +52,10 @@ namespace Health_Managment_System.Forms
             if (user != null)
             {
                 // Open main form and close login form
-                var mainForm = new MainForm(user);
+                var mainForm = new MainForm(user,this);
                 this.Hide();
                 mainForm.ShowDialog();
-                this.Show();                
+
             }
             else
             {

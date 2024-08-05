@@ -26,12 +26,15 @@ namespace Health_Managment_System.Services
 
         public UserService(ApplicationDbContext context)
         {
-            _context = context;
+            _context = context!;
         }
 
         public async Task<User> AuthenticateAsync(string username, string password)
         {
-            var user = await _context.Users.SingleOrDefaultAsync(u => u.Username == username);
+            var user = await _context.Users
+                .Include(u => u.PatientRecord)  // Include the PatientRecord
+                .SingleOrDefaultAsync(u => u.Username == username);
+
             if (user == null || !BCrypt.Net.BCrypt.Verify(password, user.PasswordHash))
             {
                 return null;
@@ -47,15 +50,23 @@ namespace Health_Managment_System.Services
                 throw new Exception("Username is already taken.");
             }
 
-
             user.PasswordHash = BCrypt.Net.BCrypt.HashPassword(user.PasswordHash);
+
+            // Add the PatientRecord
+            if (user.PatientRecord != null)
+            {
+                _context.PatientRecords.Add(user.PatientRecord);
+            }
+
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
         }
 
         public async Task<List<User>> GetAllUsersAsync()
         {
-            return await _context.Users.ToListAsync();
+            return await _context.Users
+                .Include(u => u.PatientRecord)  // Include the PatientRecord
+                .ToListAsync();
         }
 
         public async Task<List<Role>> GetRolesAsync()
@@ -63,22 +74,28 @@ namespace Health_Managment_System.Services
             return await _context.Roles.ToListAsync();
         }
 
-        public Task<User> GetUserByIdAsync(int id)
+        public async Task<User> GetUserByIdAsync(int id)
         {
-            //TODO: Implement this
-            throw new NotImplementedException();
+            return await _context.Users
+                .Include(u => u.PatientRecord)  // Include the PatientRecord
+                .SingleOrDefaultAsync(u => u.Id == id);
         }
 
-        public Task<User> GetUserByNameAsync(string username)
+        public async Task<User> GetUserByNameAsync(string username)
         {
-            //TODO: Implement this
-            throw new NotImplementedException();
+            return await _context.Users
+                .Include(u => u.PatientRecord)  // Include the PatientRecord
+                .SingleOrDefaultAsync(u => u.Username == username);
         }
 
-        public Task DeleteUserAsync(int id)
+        public async Task DeleteUserAsync(int id)
         {
-            //TODO: Implement this
-            throw new NotImplementedException();
+            var user = await _context.Users.FindAsync(id);
+            if (user != null)
+            {
+                _context.Users.Remove(user);
+                await _context.SaveChangesAsync();
+            }
         }
     }
 
