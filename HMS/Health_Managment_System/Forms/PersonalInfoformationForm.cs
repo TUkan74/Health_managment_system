@@ -48,9 +48,6 @@ namespace Health_Managment_System.Forms
                 txtPhoneNumber.Text = "";
             }
 
-            cmbRole.Items.Clear();
-            cmbRole.Items.AddRange(new string[] { "Doctor", "Patient", "Nurse" });
-            cmbRole.Text = _user.Role;
         }
 
         private void ToggleEditMode(bool isEditing)
@@ -62,7 +59,6 @@ namespace Health_Managment_System.Forms
             dtpDateOfBirth.Enabled = isEditing;
             txtAddress.ReadOnly = !isEditing;
             txtPhoneNumber.ReadOnly = !isEditing;
-            cmbRole.Enabled = isEditing;
             txtPassword.Visible = isEditing;
             txtConfirmPassword.Visible = isEditing;
             lblPassword.Visible = isEditing;
@@ -85,6 +81,19 @@ namespace Health_Managment_System.Forms
 
 
 
+
+
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+            _isEditing = !_isEditing;
+            ToggleEditMode(_isEditing);
+        }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
         private async void btnSave_Click(object sender, EventArgs e)
         {
             if (txtPassword.Text != txtConfirmPassword.Text)
@@ -96,7 +105,6 @@ namespace Health_Managment_System.Forms
             // Update user and patient record details
             _user.Username = txtUsername.Text;
             _user.Email = txtEmail.Text;
-            _user.Role = cmbRole.Text;
 
             if (_user.PatientRecord != null)
             {
@@ -135,17 +143,6 @@ namespace Health_Managment_System.Forms
             {
                 MessageBox.Show($"An error occurred while updating the information: {ex.Message}");
             }
-        }
-
-        private void btnEdit_Click(object sender, EventArgs e)
-        {
-            _isEditing = !_isEditing;
-            ToggleEditMode(_isEditing);
-        }
-
-        private void btnBack_Click(object sender, EventArgs e)
-        {
-            this.Close();
         }
     }
 }
