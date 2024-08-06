@@ -1,4 +1,5 @@
-﻿using HealthcareManagementSystem.Models;
+﻿using Health_Managment_System.Services;
+using HealthcareManagementSystem.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,8 +16,10 @@ namespace Health_Managment_System.Forms
     {
         private User _user;
         private readonly LoginForm _loginForm;
-        public MainForm(User user, LoginForm loginForm)
+        private readonly IUserService _userService;
+        public MainForm(User user, LoginForm loginForm,IUserService userService)
         {
+            _userService = userService;
             _loginForm = loginForm;
             _user = user;
             InitializeComponent();
@@ -35,7 +38,7 @@ namespace Health_Managment_System.Forms
 
         private void PersonalInfoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var personalInfoForm = new PersonalInfoformationForm(_user);
+            var personalInfoForm = new PersonalInfoformationForm(_user,_userService);
             personalInfoForm.ShowDialog();
 
         }

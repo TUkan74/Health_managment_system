@@ -18,6 +18,7 @@ namespace Health_Managment_System.Services
         Task<User> GetUserByIdAsync(int id);
         Task<User> GetUserByNameAsync(string username);
         Task DeleteUserAsync(int id);
+        Task UpdateUserAsync(User user);
     }
 
     public class UserService : IUserService
@@ -96,6 +97,39 @@ namespace Health_Managment_System.Services
                 _context.Users.Remove(user);
                 await _context.SaveChangesAsync();
             }
+        }
+
+        public async Task UpdateUserAsync(User user)
+        {
+            var existingUser = await _context.Users
+                .Include(u => u.PatientRecord)
+                .FirstOrDefaultAsync(u => u.Id == user.Id);
+
+            if (existingUser == null)
+            {
+                throw new Exception("User not found.");
+            }
+
+            existingUser.Username = user.Username;
+            existingUser.Email = user.Email;
+            existingUser.Role = user.Role;
+            existingUser.PasswordHash = user.PasswordHash;
+
+            if (existingUser.PatientRecord != null && user.PatientRecord != null)
+            {
+                existingUser.PatientRecord.FirstName = user.PatientRecord.FirstName;
+                existingUser.PatientRecord.LastName = user.PatientRecord.LastName;
+                existingUser.PatientRecord.DateOfBirth = user.PatientRecord.DateOfBirth;
+                existingUser.PatientRecord.Address = user.PatientRecord.Address;
+                existingUser.PatientRecord.PhoneNumber = user.PatientRecord.PhoneNumber;
+                existingUser.PatientRecord.Email = user.PatientRecord.Email;
+            }
+            else if (user.PatientRecord != null)
+            {
+                existingUser.PatientRecord = user.PatientRecord;
+            }
+
+            await _context.SaveChangesAsync();
         }
     }
 
