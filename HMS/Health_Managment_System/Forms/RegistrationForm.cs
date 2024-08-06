@@ -17,6 +17,20 @@ namespace Health_Managment_System.Forms
             InitializeComponent();
         }
 
+        public void RegistrationForm_Loader(object sender, EventArgs e)
+        {
+            txtUsername.Text = "";
+            txtPassword.Text = "";
+            txtConfirmPassword.Text = "";
+            txtEmail.Text = "";
+            txtFirstName.Text = "";
+            txtLastName.Text = "";
+            dtpDateOfBirth.Value = DateTime.Today;
+            txtAddress.Text = "";
+            txtPhoneNumber.Text = "";
+            cmbRole.Items.AddRange(new string[] { "Doctor", "Patient", "Nurse" });
+        }
+
         private void lnkBackLgn_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             this.Close();
@@ -80,11 +94,15 @@ namespace Health_Managment_System.Forms
             try
             {
                 await _userService.RegisterAsync(user);
-                MessageBox.Show("User registered successfully.");
+                
 
                 var users = await _userService.GetAllUsersAsync();
                 string userList = string.Join(Environment.NewLine, users.Select(u => u.Username));
-                MessageBox.Show("Current users in the database:\n" + userList);
+                MessageBox.Show($"User registered successfully. Username: {user.Username}");
+                this.DialogResult = DialogResult.OK;
+
+                // DEBUG: Show all users in the database
+                //MessageBox.Show("Current users in the database:\n" + userList);
             }
             catch (Exception ex)
             {
@@ -102,7 +120,7 @@ namespace Health_Managment_System.Forms
                 }
             }
 
-            this.Close();
+            
         }
 
         private void dtpDateOfBirth_ValueChanged(object sender, EventArgs e)

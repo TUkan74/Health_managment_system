@@ -22,7 +22,7 @@ namespace Health_Managment_System.Forms
         private void PersonalInfoformationForm_Load(object sender, EventArgs e)
         {
             LoadUserData();
-            ToggleEditMode(false); // Start in view mode
+            ToggleEditMode(_isEditing); // Start in view mode
         }
 
         private void LoadUserData()
@@ -55,8 +55,6 @@ namespace Health_Managment_System.Forms
 
         private void ToggleEditMode(bool isEditing)
         {
-            _isEditing = isEditing;
-
             txtUsername.ReadOnly = !isEditing;
             txtEmail.ReadOnly = !isEditing;
             txtFirstName.ReadOnly = !isEditing;
@@ -70,7 +68,6 @@ namespace Health_Managment_System.Forms
             lblPassword.Visible = isEditing;
             lblConfirmPassword.Visible = isEditing;
             btnSave.Enabled = isEditing;
-            btnEdit.Enabled = !isEditing;
 
             if (!isEditing)
             {
@@ -142,7 +139,13 @@ namespace Health_Managment_System.Forms
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            ToggleEditMode(true);
+            _isEditing = !_isEditing;
+            ToggleEditMode(_isEditing);
+        }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

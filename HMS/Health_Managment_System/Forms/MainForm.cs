@@ -27,13 +27,12 @@ namespace Health_Managment_System.Forms
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            this.DialogResult = DialogResult.Cancel;
         }
 
         private void logoutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            _loginForm.Show();
-            this.Close();
+            this.DialogResult = DialogResult.OK;
         }
 
         private void PersonalInfoToolStripMenuItem_Click(object sender, EventArgs e)
@@ -45,7 +44,7 @@ namespace Health_Managment_System.Forms
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Application.Exit();
+            this.DialogResult = DialogResult.Cancel;
         }
 
     }

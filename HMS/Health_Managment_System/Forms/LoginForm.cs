@@ -54,18 +54,23 @@ namespace Health_Managment_System.Forms
                 // Open main form and close login form
                 var mainForm = new MainForm(user,this,_userService);
                 this.Hide();
-                mainForm.ShowDialog();
+                mainForm.ShowDialog();                
+                // We get OK if the user logs out
+                if (mainForm.DialogResult == DialogResult.OK)
+                {
+                    this.Show();
+                }
+                // We get Cancel if the user exits of closes the form
+                else if (mainForm.DialogResult == DialogResult.Cancel)
+                {
+                    Application.Exit();
+                }
 
             }
             else
             {
                 MessageBox.Show("Invalid username or password.");
             }
-
-            /*this.Hide();
-            MainForm mainForm = new MainForm();
-            mainForm.ShowDialog();
-            this.Show();*/
         }
 
         /// <summary>
@@ -157,8 +162,17 @@ namespace Health_Managment_System.Forms
         {
             this.Hide();
             var registrationForm = _serviceProvider.GetRequiredService<RegistrationForm>();
+            registrationForm.RegistrationForm_Loader(this, e);
             registrationForm.ShowDialog();
-            this.Show();
+            
+            if (registrationForm.DialogResult == DialogResult.OK)
+            {
+                this.Show();
+            }
+            else if (registrationForm.DialogResult == DialogResult.Cancel)
+            {
+                this.Show();
+            }
             
         }
 

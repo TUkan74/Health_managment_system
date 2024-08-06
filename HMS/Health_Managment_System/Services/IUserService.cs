@@ -51,6 +51,11 @@ namespace Health_Managment_System.Services
                 throw new Exception("Username is already taken.");
             }
 
+            if (await _context.Users.AnyAsync(u => u.Email == user.Email))
+            {
+                throw new Exception("Email is already registered.");
+            }
+
             user.PasswordHash = BCrypt.Net.BCrypt.HashPassword(user.PasswordHash);
 
             // Add the PatientRecord
