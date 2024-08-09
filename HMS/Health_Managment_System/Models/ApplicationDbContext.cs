@@ -12,9 +12,19 @@ namespace HealthcareManagementSystem.Models
         public DbSet<MedicalHistory> MedicalHistories { get; set; }
         public DbSet<Prescription> Prescriptions { get; set; }
 
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+            : base(options)
+        {
+        }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=HealthcareManagementSystem;Trusted_Connection=True;");
+            if (!optionsBuilder.IsConfigured)
+            {
+                optionsBuilder.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=HealthcareManagementSystem;Trusted_Connection=True;");
+            }
         }
+
+
     }
 }

@@ -7,6 +7,9 @@ build/
 bin/
 obj/
 
+# My own problems notebook
+SolvedProblems.md
+
 # Rider
 .idea/
 *.sln.iml

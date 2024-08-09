@@ -38,6 +38,7 @@ namespace Health_Managment_System.Forms
                 dtpDateOfBirth.Value = patientRecord.DateOfBirth;
                 txtAddress.Text = patientRecord.Address;
                 txtPhoneNumber.Text = patientRecord.PhoneNumber;
+                Rolelbl.Text = _user.Role;
             }
             else
             {
@@ -143,6 +144,11 @@ namespace Health_Managment_System.Forms
             {
                 MessageBox.Show($"An error occurred while updating the information: {ex.Message}");
             }
+        }
+
+        private void PersonalInfoformationForm_Load_1(object sender, EventArgs e)
+        {
+
         }
     }
 }

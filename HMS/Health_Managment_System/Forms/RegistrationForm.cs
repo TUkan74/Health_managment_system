@@ -28,7 +28,9 @@ namespace Health_Managment_System.Forms
             dtpDateOfBirth.Value = DateTime.Today;
             txtAddress.Text = "";
             txtPhoneNumber.Text = "";
-            cmbRole.Items.AddRange(new string[] { "Doctor", "Patient", "Nurse" });
+            /*cmbRole.Visible = false;
+            cmbRole.Enabled = false;
+            lblRole.Visible = false;*/
         }
 
         private void lnkBackLgn_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -47,10 +49,13 @@ namespace Health_Managment_System.Forms
             var dateOfBirth = dtpDateOfBirth.Value;
             var address = txtAddress.Text;
             var phoneNumber = txtPhoneNumber.Text;
+            
+            
+            
             var role = cmbRole.Text;
 
             if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password) || string.IsNullOrWhiteSpace(confirmPassword) || string.IsNullOrWhiteSpace(email) ||
-                string.IsNullOrWhiteSpace(firstName) || string.IsNullOrWhiteSpace(lastName) || string.IsNullOrWhiteSpace(address) || string.IsNullOrWhiteSpace(phoneNumber) || string.IsNullOrWhiteSpace(role))
+                string.IsNullOrWhiteSpace(firstName) || string.IsNullOrWhiteSpace(lastName) || string.IsNullOrWhiteSpace(address) || string.IsNullOrWhiteSpace(phoneNumber))
             {
                 MessageBox.Show("Please fill in all fields.");
                 return;
@@ -68,17 +73,17 @@ namespace Health_Managment_System.Forms
                 return;
             }
 
-            if (!(role == "Doctor" || role == "Patient" || role == "Nurse"))
+            /*if (!(role == "Doctor" || role == "Patient" || role == "Nurse"))
             {
                 MessageBox.Show("Please select a valid role.");
                 return;
-            }
+            }*/
 
             var user = new User
             {
                 Username = username,
                 PasswordHash = password,  // Hashing will be done in the UserService
-                Role = role,
+                Role = "Patient",
                 Email = email,
                 PatientRecord = new PatientRecord
                 {

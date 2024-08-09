@@ -24,6 +24,27 @@ namespace Health_Managment_System.Forms
         {
             _userService = userService;
             _serviceProvider = serviceProvider;
+            
+            /*Button btnUsers = new Button();
+            btnUsers.Text = "Users";
+            btnUsers.Location = new Point(100, 100);
+            btnUsers.Click += (s, e) =>
+            {
+                var users = _userService.GetAllUsersAsync().Result;
+                if (users != null)
+                {
+                    foreach (var user in users)
+                    {
+                        MessageBox.Show($"{user.Username} \n {user.Email} \n {user.Role}, {user.PasswordHash.ToString()} ");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("No users found.");
+                }
+            };
+            this.Controls.Add(btnUsers);*/
+
             InitializeComponent();
         }
 
@@ -51,21 +72,31 @@ namespace Health_Managment_System.Forms
             var user = await _userService.AuthenticateAsync(username, password);
             if (user != null)
             {
-                // Open main form and close login form
-                var mainForm = new MainForm(user,this,_userService);
+                Form nextForm;
+
+                // Determine which form to open based on the user's role
+                if (user.Role == "Admin")
+                {
+                    nextForm = new AdminForm(_userService);
+                }
+                else
+                {
+                    nextForm = new MainForm(user, this, _userService);
+                }
+
+                // Hide the login form and show the next form
                 this.Hide();
-                mainForm.ShowDialog();                
-                // We get OK if the user logs out
-                if (mainForm.DialogResult == DialogResult.OK)
+                nextForm.ShowDialog();
+
+                // Check the dialog result of the next form
+                if (nextForm.DialogResult == DialogResult.OK)
                 {
                     this.Show();
                 }
-                // We get Cancel if the user exits of closes the form
-                else if (mainForm.DialogResult == DialogResult.Cancel)
+                else if (nextForm.DialogResult == DialogResult.Cancel)
                 {
                     Application.Exit();
                 }
-
             }
             else
             {
