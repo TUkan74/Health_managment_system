@@ -59,9 +59,6 @@ artifacts/
 .vs/
 .vscode/
 
-# Windows Forms Designer
-*.Designer.cs
-
 # NuGet
 *.nupkg
 # The packages folder can be ignored because of Package Restore
