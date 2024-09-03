@@ -25,20 +25,21 @@ namespace Health_Managment_System
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            /*var loginForm = serviceProvider.GetRequiredService<LoginForm>();
-            Application.Run(loginForm);*/
-            var adminForm = serviceProvider.GetRequiredService<AdminForm>();
-            Application.Run(adminForm);
+            var loginForm = serviceProvider.GetRequiredService<LoginForm>();
+            Application.Run(loginForm);
+            /*var adminForm = serviceProvider.GetRequiredService<AdminForm>();
+            Application.Run(adminForm);*/
         }
 
         private static void ConfigureServices(ServiceCollection services)
         {
             services.AddDbContext<ApplicationDbContext>(options =>
+                // This adress should be changed to the adress of the database on your computer
                 options.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=HealthcareManagementSystem;Trusted_Connection=True;"));
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<LoginForm>();
             services.AddScoped<RegistrationForm>();
-            services.AddScoped<MainForm>();  
+            services.AddScoped<PatientForm>();  
             services.AddScoped<AdminForm>();
         }
 

@@ -12,15 +12,13 @@ using System.Windows.Forms;
 
 namespace Health_Managment_System.Forms
 {
-    public partial class MainForm : Form
+    public partial class PatientForm : Form
     {
         private User _user;
-        private readonly LoginForm _loginForm;
         private readonly IUserService _userService;
-        public MainForm(User user, LoginForm loginForm,IUserService userService)
+        public PatientForm(User user,IUserService userService)
         {
             _userService = userService;
-            _loginForm = loginForm;
             _user = user;
             InitializeComponent();
         }
@@ -37,7 +35,7 @@ namespace Health_Managment_System.Forms
 
         private void PersonalInfoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var personalInfoForm = new PersonalInfoformationForm(_user,_userService);
+            var personalInfoForm = new PersonalInfoformationForm(_user,_userService,false);
             personalInfoForm.ShowDialog();
 
         }

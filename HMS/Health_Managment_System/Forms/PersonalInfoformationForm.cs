@@ -9,12 +9,13 @@ namespace Health_Managment_System.Forms
     {
         private User _user;
         private readonly IUserService _userService;
-        private bool _isEditing = false;
+        private bool _isEditing;
 
-        public PersonalInfoformationForm(User user, IUserService userService)
+        public PersonalInfoformationForm(User user, IUserService userService,bool isEditing)
         {
             _user = user;
             _userService = userService;
+            _isEditing = isEditing;
             InitializeComponent();
             this.Load += PersonalInfoformationForm_Load;
         }

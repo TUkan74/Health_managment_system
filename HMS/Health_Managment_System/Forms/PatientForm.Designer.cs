@@ -1,6 +1,6 @@
 ﻿namespace Health_Managment_System.Forms
 {
-    partial class MainForm
+    partial class PatientForm
     {
         /// <summary>
         /// Required designer variable.

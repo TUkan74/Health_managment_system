@@ -24,26 +24,16 @@ namespace Health_Managment_System.Forms
         {
             _userService = userService;
             _serviceProvider = serviceProvider;
-            
-            /*Button btnUsers = new Button();
-            btnUsers.Text = "Users";
+
+            Button btnUsers = new Button();
+            btnUsers.Text = "Admin";
             btnUsers.Location = new Point(100, 100);
             btnUsers.Click += (s, e) =>
             {
-                var users = _userService.GetAllUsersAsync().Result;
-                if (users != null)
-                {
-                    foreach (var user in users)
-                    {
-                        MessageBox.Show($"{user.Username} \n {user.Email} \n {user.Role}, {user.PasswordHash.ToString()} ");
-                    }
-                }
-                else
-                {
-                    Console.WriteLine("No users found.");
-                }
+                var adminForm = new AdminForm(_userService);
+                adminForm.ShowDialog();
             };
-            this.Controls.Add(btnUsers);*/
+            this.Controls.Add(btnUsers);
 
             InitializeComponent();
         }
@@ -79,10 +69,15 @@ namespace Health_Managment_System.Forms
                 {
                     nextForm = new AdminForm(_userService);
                 }
-                else
+                if (user.Role == "Doctor" || user.Role == "Nurse")
                 {
-                    nextForm = new MainForm(user, this, _userService);
+                    nextForm = new MedicalPersonnelForm(user, _userService,user.Role);
                 }
+                else // (user.Role == "Patient")
+                {
+                    nextForm = new PatientForm(user, _userService);
+                }
+                
 
                 // Hide the login form and show the next form
                 this.Hide();

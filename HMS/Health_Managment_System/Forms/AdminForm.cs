@@ -37,6 +37,7 @@ namespace Health_Managment_System.Forms
             dgvUsers.Columns.Add("Role", "Role");
             dgvUsers.Columns.Add("PasswordHash", "Password Hash");
 
+            // Edit user information button
             Button btnEdit = new Button
             {
                 Text = "Edit",
@@ -44,12 +45,34 @@ namespace Health_Managment_System.Forms
             };
             btnEdit.Click += BtnEdit_Click;
 
+            // Delete user button
             Button btnDelete = new Button
             {
                 Text = "Delete",
                 Location = new Point(150, 370)
             };
             btnDelete.Click += BtnDelete_Click;
+
+            //Appointments button
+            Button btnAppointments = new Button
+            {
+                Text = "Appointments",
+                Location = new Point(250, 370)
+            };
+
+            // Prescriptions button
+            Button btnPrescriptions = new Button
+            {
+                Text = "Prescriptions",
+                Location = new Point(350, 370)
+            };
+
+            // Medical Records button
+            Button btnMedicalRecords = new Button
+            {
+                Text = "Medical Records",
+                Location = new Point(450, 370)
+            };
 
             this.Controls.Add(dgvUsers);
             this.Controls.Add(btnEdit);
@@ -67,13 +90,29 @@ namespace Health_Managment_System.Forms
             }
         }
 
-        private void BtnEdit_Click(object sender, EventArgs e)
+        private async void BtnEdit_Click(object sender, EventArgs e)
         {
             if (dgvUsers.SelectedRows.Count > 0)
             {
                 var selectedUser = dgvUsers.SelectedRows[0];
                 // Open an edit form here (implementation of the form will be done later)
                 MessageBox.Show($"Edit user: {selectedUser.Cells["Username"].Value}");
+                var username = selectedUser.Cells["Username"].Value.ToString();
+                var user = await _userService.GetUserByNameAsync(username);
+
+                // Check if the user was found
+                if (user != null)
+                {
+                    // Open the PersonalInformationForm with the selected user
+                    var personalInfoForm = new PersonalInfoformationForm(user, _userService,true);
+                    personalInfoForm.ShowDialog();
+                }
+                else
+                {
+                    MessageBox.Show("User not found.");
+                }
+
+                
             }
             else
             {
@@ -81,14 +120,43 @@ namespace Health_Managment_System.Forms
             }
         }
 
-        private void BtnDelete_Click(object sender, EventArgs e)
+        private async void BtnDelete_Click(object sender, EventArgs e)
         {
             if (dgvUsers.SelectedRows.Count > 0)
             {
                 var selectedUser = dgvUsers.SelectedRows[0];
                 var username = selectedUser.Cells["Username"].Value.ToString();
-                // Delete user logic here (implementation will be done later)
-                MessageBox.Show($"Delete user: {username}");
+                var user = await _userService.GetUserByNameAsync(username);
+
+                // Check if the user was found
+                if (user != null)
+                {
+                    // Confirm before deleting the user
+                    var confirmation = MessageBox.Show($"Are you sure you want to delete the user '{username}'?",
+                                                       "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+                    if (confirmation == DialogResult.Yes)
+                    {
+                        try
+                        {
+                            // Await the deletion to ensure it completes
+                            await _userService.DeleteUserAsync(user.Id);
+                            MessageBox.Show("User deleted successfully.");
+
+                            // Refresh the DataGridView or update the user list as needed
+                            // You may need to call a method to reload the data
+                            LoadUsersAsync(); // Assuming LoadUsers() is a method that refreshes the user list
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show($"An error occurred while deleting the user: {ex.Message}");
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("User not found.");
+                }
             }
             else
             {
