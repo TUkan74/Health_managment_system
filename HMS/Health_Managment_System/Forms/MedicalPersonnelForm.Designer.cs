@@ -28,12 +28,108 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "MedicalPersonnel";
+            btnPatients = new Button();
+            btnAppointments = new Button();
+            btnAddPatients = new Button();
+            menuStrip1 = new MenuStrip();
+            profileToolStripMenuItem = new ToolStripMenuItem();
+            nameSurnameToolStripMenuItem = new ToolStripMenuItem();
+            loToolStripMenuItem = new ToolStripMenuItem();
+            exitToolStripMenuItem = new ToolStripMenuItem();
+            menuStrip1.SuspendLayout();
+            SuspendLayout();
+            // 
+            // btnPatients
+            // 
+            btnPatients.Location = new Point(137, 151);
+            btnPatients.Name = "btnPatients";
+            btnPatients.Size = new Size(136, 92);
+            btnPatients.TabIndex = 0;
+            btnPatients.Text = "Patients";
+            btnPatients.UseVisualStyleBackColor = true;
+            // 
+            // btnAppointments
+            // 
+            btnAppointments.Location = new Point(279, 151);
+            btnAppointments.Name = "btnAppointments";
+            btnAppointments.Size = new Size(136, 92);
+            btnAppointments.TabIndex = 2;
+            btnAppointments.Text = "Appointments";
+            btnAppointments.UseVisualStyleBackColor = true;
+            // 
+            // btnAddPatients
+            // 
+            btnAddPatients.Location = new Point(421, 151);
+            btnAddPatients.Name = "btnAddPatients";
+            btnAddPatients.Size = new Size(136, 92);
+            btnAddPatients.TabIndex = 3;
+            btnAddPatients.Text = "Add Patients";
+            btnAddPatients.UseVisualStyleBackColor = true;
+            // 
+            // menuStrip1
+            // 
+            menuStrip1.Items.AddRange(new ToolStripItem[] { profileToolStripMenuItem });
+            menuStrip1.Location = new Point(0, 0);
+            menuStrip1.Name = "menuStrip1";
+            menuStrip1.Size = new Size(800, 24);
+            menuStrip1.TabIndex = 4;
+            menuStrip1.Text = "menuStrip1";
+            // 
+            // profileToolStripMenuItem
+            // 
+            profileToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { nameSurnameToolStripMenuItem, loToolStripMenuItem, exitToolStripMenuItem });
+            profileToolStripMenuItem.Name = "profileToolStripMenuItem";
+            profileToolStripMenuItem.Size = new Size(53, 20);
+            profileToolStripMenuItem.Text = "Profile";
+            // 
+            // nameSurnameToolStripMenuItem
+            // 
+            nameSurnameToolStripMenuItem.Name = "nameSurnameToolStripMenuItem";
+            nameSurnameToolStripMenuItem.Size = new Size(180, 22);
+            nameSurnameToolStripMenuItem.Text = "\"Name\" \"Surname\"";
+            nameSurnameToolStripMenuItem.Click += nameSurnameToolStripMenuItem_Click;
+            // 
+            // loToolStripMenuItem
+            // 
+            loToolStripMenuItem.Name = "loToolStripMenuItem";
+            loToolStripMenuItem.Size = new Size(180, 22);
+            loToolStripMenuItem.Text = "Logout";
+            loToolStripMenuItem.Click += loToolStripMenuItem_Click;
+            // 
+            // exitToolStripMenuItem
+            // 
+            exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            exitToolStripMenuItem.Size = new Size(180, 22);
+            exitToolStripMenuItem.Text = "Exit";
+            exitToolStripMenuItem.Click += exitToolStripMenuItem_Click;
+            // 
+            // MedicalPersonnelForm
+            // 
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(800, 450);
+            Controls.Add(btnAddPatients);
+            Controls.Add(btnAppointments);
+            Controls.Add(btnPatients);
+            Controls.Add(menuStrip1);
+            MainMenuStrip = menuStrip1;
+            Name = "MedicalPersonnelForm";
+            Text = "MedicalPersonnel";
+            menuStrip1.ResumeLayout(false);
+            menuStrip1.PerformLayout();
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
+
+        private Button btnPatients;
+        private Button btnAppointments;
+        private Button btnAddPatients;
+        private MenuStrip menuStrip1;
+        private ToolStripMenuItem profileToolStripMenuItem;
+        private ToolStripMenuItem nameSurnameToolStripMenuItem;
+        private ToolStripMenuItem loToolStripMenuItem;
+        private ToolStripMenuItem exitToolStripMenuItem;
     }
 }

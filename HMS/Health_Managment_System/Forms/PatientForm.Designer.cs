@@ -37,8 +37,12 @@
             patientRecordsToolStripMenuItem = new ToolStripMenuItem();
             prescriptionsToolStripMenuItem = new ToolStripMenuItem();
             medicalHistoryToolStripMenuItem = new ToolStripMenuItem();
-            helpToolStripMenuItem = new ToolStripMenuItem();
             PersonalInfoToolStripMenuItem = new ToolStripMenuItem();
+            helpToolStripMenuItem = new ToolStripMenuItem();
+            btnMedicalHistory = new Button();
+            btnPrescriptions = new Button();
+            btnAppointments = new Button();
+            personalInformationToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -53,10 +57,10 @@
             // 
             // fileToolStripMenuItem
             // 
-            fileToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { logoutToolStripMenuItem, exitToolStripMenuItem });
+            fileToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { personalInformationToolStripMenuItem, logoutToolStripMenuItem, exitToolStripMenuItem });
             fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            fileToolStripMenuItem.Size = new Size(37, 20);
-            fileToolStripMenuItem.Text = "File";
+            fileToolStripMenuItem.Size = new Size(53, 20);
+            fileToolStripMenuItem.Text = "Profile";
             // 
             // logoutToolStripMenuItem
             // 
@@ -82,32 +86,26 @@
             // dashboardToolStripMenuItem
             // 
             dashboardToolStripMenuItem.Name = "dashboardToolStripMenuItem";
-            dashboardToolStripMenuItem.Size = new Size(180, 22);
+            dashboardToolStripMenuItem.Size = new Size(185, 22);
             dashboardToolStripMenuItem.Text = "Dashboard";
             // 
             // patientRecordsToolStripMenuItem
             // 
             patientRecordsToolStripMenuItem.Name = "patientRecordsToolStripMenuItem";
-            patientRecordsToolStripMenuItem.Size = new Size(180, 22);
+            patientRecordsToolStripMenuItem.Size = new Size(185, 22);
             patientRecordsToolStripMenuItem.Text = "Patient Records";
             // 
             // prescriptionsToolStripMenuItem
             // 
             prescriptionsToolStripMenuItem.Name = "prescriptionsToolStripMenuItem";
-            prescriptionsToolStripMenuItem.Size = new Size(180, 22);
+            prescriptionsToolStripMenuItem.Size = new Size(185, 22);
             prescriptionsToolStripMenuItem.Text = "Perscriptions";
             // 
             // medicalHistoryToolStripMenuItem
             // 
             medicalHistoryToolStripMenuItem.Name = "medicalHistoryToolStripMenuItem";
-            medicalHistoryToolStripMenuItem.Size = new Size(180, 22);
+            medicalHistoryToolStripMenuItem.Size = new Size(185, 22);
             medicalHistoryToolStripMenuItem.Text = "Medical History";
-            // 
-            // helpToolStripMenuItem
-            // 
-            helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            helpToolStripMenuItem.Size = new Size(44, 20);
-            helpToolStripMenuItem.Text = "Help";
             // 
             // PersonalInfoToolStripMenuItem
             // 
@@ -116,14 +114,60 @@
             PersonalInfoToolStripMenuItem.Text = "Personal Information";
             PersonalInfoToolStripMenuItem.Click += PersonalInfoToolStripMenuItem_Click;
             // 
-            // MainForm
+            // helpToolStripMenuItem
+            // 
+            helpToolStripMenuItem.Name = "helpToolStripMenuItem";
+            helpToolStripMenuItem.Size = new Size(44, 20);
+            helpToolStripMenuItem.Text = "Help";
+            // 
+            // btnMedicalHistory
+            // 
+            btnMedicalHistory.Location = new Point(114, 152);
+            btnMedicalHistory.Name = "btnMedicalHistory";
+            btnMedicalHistory.Size = new Size(136, 92);
+            btnMedicalHistory.TabIndex = 1;
+            btnMedicalHistory.Text = "Medical History";
+            btnMedicalHistory.UseVisualStyleBackColor = true;
+            btnMedicalHistory.Click += btnMedicalHistory_Click;
+            // 
+            // btnPrescriptions
+            // 
+            btnPrescriptions.Location = new Point(283, 152);
+            btnPrescriptions.Name = "btnPrescriptions";
+            btnPrescriptions.Size = new Size(136, 93);
+            btnPrescriptions.TabIndex = 2;
+            btnPrescriptions.Text = "Prescription";
+            btnPrescriptions.UseVisualStyleBackColor = true;
+            btnPrescriptions.Click += btnPrescriptions_Click;
+            // 
+            // btnAppointments
+            // 
+            btnAppointments.Location = new Point(462, 152);
+            btnAppointments.Name = "btnAppointments";
+            btnAppointments.Size = new Size(136, 93);
+            btnAppointments.TabIndex = 4;
+            btnAppointments.Text = "Appointments";
+            btnAppointments.UseVisualStyleBackColor = true;
+            btnAppointments.Click += btnAppointments_Click;
+            // 
+            // personalInformationToolStripMenuItem
+            // 
+            personalInformationToolStripMenuItem.Name = "personalInformationToolStripMenuItem";
+            personalInformationToolStripMenuItem.Size = new Size(180, 22);
+            personalInformationToolStripMenuItem.Text = "\"Name\" \"Surname\"";
+            personalInformationToolStripMenuItem.Click += personalInformationToolStripMenuItem_Click;
+            // 
+            // PatientForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(btnAppointments);
+            Controls.Add(btnPrescriptions);
+            Controls.Add(btnMedicalHistory);
             Controls.Add(menuStrip1);
             MainMenuStrip = menuStrip1;
-            Name = "MainForm";
+            Name = "PatientForm";
             Text = "MainForm";
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
@@ -144,5 +188,9 @@
         private ToolStripMenuItem medicalHistoryToolStripMenuItem;
         private ToolStripMenuItem helpToolStripMenuItem;
         private ToolStripMenuItem PersonalInfoToolStripMenuItem;
+        private Button btnMedicalHistory;
+        private Button btnPrescriptions;
+        private Button btnAppointments;
+        private ToolStripMenuItem personalInformationToolStripMenuItem;
     }
 }
