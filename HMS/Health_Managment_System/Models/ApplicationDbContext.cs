@@ -11,7 +11,7 @@ namespace HealthcareManagementSystem.Models
         public DbSet<PatientRecord> PatientRecords { get; set; }
         public DbSet<MedicalHistory> MedicalHistories { get; set; }
         public DbSet<Prescription> Prescriptions { get; set; }
-        public DbSet<Appointment> Appointments { get; set; } // Add this line
+        public DbSet<Appointment> Appointments { get; set; }
 
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
