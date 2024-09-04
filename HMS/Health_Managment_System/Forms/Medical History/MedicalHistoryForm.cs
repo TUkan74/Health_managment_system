@@ -1,4 +1,5 @@
-﻿using Health_Managment_System.Services;
+﻿using Health_Managment_System.Forms.Medical_History;
+using Health_Managment_System.Services;
 using HealthcareManagementSystem.Models;
 using System;
 using System.Collections.Generic;
@@ -28,10 +29,10 @@ namespace Health_Managment_System.Forms
             _userService = userService;
             _adminPermissions = AdminPermissions;
             InitializeComponent();
-            /*InitializeMedicalHistoryGrid();
-            LoadMedicalHistory();*/
+            InitializeMedicalHistoryGrid();
+            LoadMedicalHistory();
         }
-/*
+
         private void InitializeMedicalHistoryGrid()
         {
             dgvMedicalHistory = new DataGridView
@@ -143,6 +144,6 @@ namespace Health_Managment_System.Forms
             {
                 MessageBox.Show("Please select a medical history record to delete.");
             }
-        }*/
+        }
     }
 }

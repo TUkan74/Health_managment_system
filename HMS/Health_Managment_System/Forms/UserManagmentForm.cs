@@ -88,6 +88,7 @@ namespace Health_Managment_System.Forms
                 Location = new Point(150, 370),
                 Size = new Size(100, 30)
             };
+            btnMedicalRecords.Click += btnMedicalRecords_Click;
 
             this.Controls.Add(dgvUsers);
             this.Controls.Add(btnEdit);
@@ -215,6 +216,56 @@ namespace Health_Managment_System.Forms
             else
             {
                 MessageBox.Show("Please select a user to delete.");
+            }
+        }
+
+        /*private async void btnPrescriptions_Click(object sender, EventArgs e)
+        {
+            if (dgvUsers.SelectedRows.Count > 0)
+            {
+                var selectedUser = dgvUsers.SelectedRows[0];
+                var username = selectedUser.Cells["Username"].Value.ToString();
+                var user = await _userService.GetUserByNameAsync(username);
+
+                // Check if the user was found
+                if (user != null)
+                {
+                    var prescriptionForm = new PrescriptionsForm(user, _userService,true);
+                    prescriptionForm.ShowDialog();
+                }
+                else
+                {
+                    MessageBox.Show("User not found.");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select a user.");
+            }
+        }*/
+
+        private void btnMedicalRecords_Click(object sender, EventArgs e)
+        {
+            if (dgvUsers.SelectedRows.Count > 0)
+            {
+                var selectedUser = dgvUsers.SelectedRows[0];
+                var username = selectedUser.Cells["Username"].Value.ToString();
+                var user = _userService.GetUserByNameAsync(username).Result;
+
+                // Check if the user was found
+                if (user != null)
+                {
+                    var medicalRecordsForm = new MedicalHistoryForm(user, _userService,true);
+                    medicalRecordsForm.ShowDialog();
+                }
+                else
+                {
+                    MessageBox.Show("User not found.");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select a user.");
             }
         }
     }

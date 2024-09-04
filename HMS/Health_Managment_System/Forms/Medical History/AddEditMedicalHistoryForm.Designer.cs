@@ -1,6 +1,6 @@
 ﻿namespace Health_Managment_System.Forms.Medical_History
 {
-    partial class AddEditMedicalHistory
+    partial class AddEditMedicalHistoryForm
     {
         /// <summary>
         /// Required designer variable.
