@@ -25,18 +25,26 @@ namespace Health_Managment_System.Forms
             InitializeComponent();
         }
 
-        private void nameSurnameToolStripMenuItem_Click(object sender, EventArgs e)
+        private void PersonalInfoToolStripToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            var personalInfoForm = new PersonalInfoformationForm(_user, _userService, false);
+            personalInfoForm.ShowDialog();
         }
 
-        private void loToolStripMenuItem_Click(object sender, EventArgs e)
+        private void LogoutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            DialogResult = DialogResult.OK;
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            DialogResult = DialogResult.Cancel;
+        }
+
+        private void btnPatients_Click(object sender, EventArgs e)
+        {
+            var UserManagmentForm = new UserManagmentForm(_userService);
+            UserManagmentForm.ShowDialog();
 
         }
     }

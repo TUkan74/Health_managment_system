@@ -10,10 +10,12 @@ namespace Health_Managment_System.Forms
     public partial class RegistrationForm : Form
     {
         private readonly IUserService _userService;
+        private bool _adminPermission;
 
-        public RegistrationForm(IUserService userService)
+        public RegistrationForm(IUserService userService,bool AdminPermission = false)
         {
             _userService = userService;
+            _adminPermission = AdminPermission;
             InitializeComponent();
         }
 
@@ -28,9 +30,13 @@ namespace Health_Managment_System.Forms
             dtpDateOfBirth.Value = DateTime.Today;
             txtAddress.Text = "";
             txtPhoneNumber.Text = "";
-            /*cmbRole.Visible = false;
-            cmbRole.Enabled = false;
-            lblRole.Visible = false;*/
+            if (_adminPermission == false)
+            {
+                cmbRole.Visible = false;
+                cmbRole.Enabled = false;
+                lblRole.Visible = false;
+            }
+            
         }
 
         private void lnkBackLgn_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

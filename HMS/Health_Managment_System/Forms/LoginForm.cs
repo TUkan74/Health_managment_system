@@ -25,17 +25,23 @@ namespace Health_Managment_System.Forms
             _userService = userService;
             _serviceProvider = serviceProvider;
 
+            // DEBUG: Create an admin user
+            CreateAdminButton();
+
+            InitializeComponent();
+        }
+
+        private void CreateAdminButton()
+        {
             Button btnUsers = new Button();
             btnUsers.Text = "Admin";
-            btnUsers.Location = new Point(100, 100);
+            btnUsers.Location = new Point(0, 0);
             btnUsers.Click += (s, e) =>
             {
                 var adminForm = new AdminForm(_userService);
                 adminForm.ShowDialog();
             };
             this.Controls.Add(btnUsers);
-
-            InitializeComponent();
         }
 
 
@@ -98,6 +104,8 @@ namespace Health_Managment_System.Forms
                 MessageBox.Show("Invalid username or password.");
             }
         }
+
+
 
         /// <summary>
         /// For the exit button

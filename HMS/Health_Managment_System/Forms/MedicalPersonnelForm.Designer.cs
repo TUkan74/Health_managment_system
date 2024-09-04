@@ -33,7 +33,7 @@
             btnAddPatients = new Button();
             menuStrip1 = new MenuStrip();
             profileToolStripMenuItem = new ToolStripMenuItem();
-            nameSurnameToolStripMenuItem = new ToolStripMenuItem();
+            PersonalInfoToolStrip = new ToolStripMenuItem();
             loToolStripMenuItem = new ToolStripMenuItem();
             exitToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
@@ -47,6 +47,7 @@
             btnPatients.TabIndex = 0;
             btnPatients.Text = "Patients";
             btnPatients.UseVisualStyleBackColor = true;
+            btnPatients.Click += btnPatients_Click;
             // 
             // btnAppointments
             // 
@@ -77,29 +78,29 @@
             // 
             // profileToolStripMenuItem
             // 
-            profileToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { nameSurnameToolStripMenuItem, loToolStripMenuItem, exitToolStripMenuItem });
+            profileToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { PersonalInfoToolStrip, loToolStripMenuItem, exitToolStripMenuItem });
             profileToolStripMenuItem.Name = "profileToolStripMenuItem";
             profileToolStripMenuItem.Size = new Size(53, 20);
             profileToolStripMenuItem.Text = "Profile";
             // 
-            // nameSurnameToolStripMenuItem
+            // PersonalInfoToolStrip
             // 
-            nameSurnameToolStripMenuItem.Name = "nameSurnameToolStripMenuItem";
-            nameSurnameToolStripMenuItem.Size = new Size(180, 22);
-            nameSurnameToolStripMenuItem.Text = "\"Name\" \"Surname\"";
-            nameSurnameToolStripMenuItem.Click += nameSurnameToolStripMenuItem_Click;
+            PersonalInfoToolStrip.Name = "PersonalInfoToolStrip";
+            PersonalInfoToolStrip.Size = new Size(176, 22);
+            PersonalInfoToolStrip.Text = "\"Name\" \"Surname\"";
+            PersonalInfoToolStrip.Click += PersonalInfoToolStripToolStripMenuItem_Click;
             // 
             // loToolStripMenuItem
             // 
             loToolStripMenuItem.Name = "loToolStripMenuItem";
-            loToolStripMenuItem.Size = new Size(180, 22);
+            loToolStripMenuItem.Size = new Size(176, 22);
             loToolStripMenuItem.Text = "Logout";
-            loToolStripMenuItem.Click += loToolStripMenuItem_Click;
+            loToolStripMenuItem.Click += LogoutToolStripMenuItem_Click;
             // 
             // exitToolStripMenuItem
             // 
             exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            exitToolStripMenuItem.Size = new Size(180, 22);
+            exitToolStripMenuItem.Size = new Size(176, 22);
             exitToolStripMenuItem.Text = "Exit";
             exitToolStripMenuItem.Click += exitToolStripMenuItem_Click;
             // 
@@ -128,7 +129,7 @@
         private Button btnAddPatients;
         private MenuStrip menuStrip1;
         private ToolStripMenuItem profileToolStripMenuItem;
-        private ToolStripMenuItem nameSurnameToolStripMenuItem;
+        private ToolStripMenuItem PersonalInfoToolStrip;
         private ToolStripMenuItem loToolStripMenuItem;
         private ToolStripMenuItem exitToolStripMenuItem;
     }

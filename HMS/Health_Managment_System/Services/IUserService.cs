@@ -31,6 +31,13 @@ namespace Health_Managment_System.Services
             _context = context;
         }
 
+        /// <summary>
+        /// User managment methods
+        /// </summary>
+        /// <param name="username"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
+
         public async Task<User> AuthenticateAsync(string username, string password)
         {
             lock (_lock)
@@ -159,6 +166,39 @@ namespace Health_Managment_System.Services
                 }
 
                 _context.SaveChanges();
+            }
+        }
+
+        /// <summary>
+        /// User appointment methods
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
+
+        public async Task<List<Appointment>> GetAppointmentsByUserAsync(int userId)
+        {
+            return await _context.Appointments.Where(a => a.UserId == userId).ToListAsync();
+        }
+
+        public async Task AddAppointmentAsync(Appointment appointment)
+        {
+            _context.Appointments.Add(appointment);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task UpdateAppointmentAsync(Appointment appointment)
+        {
+            _context.Appointments.Update(appointment);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task DeleteAppointmentAsync(int appointmentId)
+        {
+            var appointment = await _context.Appointments.FindAsync(appointmentId);
+            if (appointment != null)
+            {
+                _context.Appointments.Remove(appointment);
+                await _context.SaveChangesAsync();
             }
         }
     }
