@@ -10,6 +10,7 @@
         public string Email { get; set; }
         public int? PatientRecordId { get; set; }  // Foreign key to PatientRecord
         public PatientRecord PatientRecord { get; set; }  // Navigation property
+        public List<Prescription> Prescriptions { get; set; } = new List<Prescription>();
 
         // FullName property that combines FirstName and LastName from PatientRecord
         public string FullName

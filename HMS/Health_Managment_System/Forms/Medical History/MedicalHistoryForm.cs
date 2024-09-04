@@ -31,24 +31,15 @@ namespace Health_Managment_System.Forms
             InitializeComponent();
             InitializeMedicalHistoryGrid();
             LoadMedicalHistory();
+
+            if (_adminPermissions == true)
+            {
+                LoadButtons(); // Add the buttons to the form
+            }
         }
 
-        private void InitializeMedicalHistoryGrid()
+        private void LoadButtons()
         {
-            dgvMedicalHistory = new DataGridView
-            {
-                Location = new Point(30, 30),
-                Size = new Size(700, 300),
-                AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill,
-                AllowUserToAddRows = false,
-                AllowUserToDeleteRows = false,
-                ReadOnly = true,
-                SelectionMode = DataGridViewSelectionMode.FullRowSelect
-            };
-
-            _bindingSource = new BindingSource();
-            dgvMedicalHistory.DataSource = _bindingSource;
-
             Button btnAdd = new Button
             {
                 Text = "Add",
@@ -73,10 +64,31 @@ namespace Health_Managment_System.Forms
             };
             btnDelete.Click += BtnDelete_Click;
 
-            this.Controls.Add(dgvMedicalHistory);
             this.Controls.Add(btnAdd);
             this.Controls.Add(btnEdit);
             this.Controls.Add(btnDelete);
+        }   
+
+        private void InitializeMedicalHistoryGrid()
+        {
+            dgvMedicalHistory = new DataGridView
+            {
+                Location = new Point(30, 30),
+                Size = new Size(700, 300),
+                AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill,
+                AllowUserToAddRows = false,
+                AllowUserToDeleteRows = false,
+                ReadOnly = true,
+                SelectionMode = DataGridViewSelectionMode.FullRowSelect
+            };
+
+            _bindingSource = new BindingSource();
+            dgvMedicalHistory.DataSource = _bindingSource;
+
+            
+
+            this.Controls.Add(dgvMedicalHistory);
+            
         }
 
         private async void LoadMedicalHistory()

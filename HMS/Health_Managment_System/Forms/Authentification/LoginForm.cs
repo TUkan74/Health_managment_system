@@ -19,16 +19,18 @@ namespace Health_Managment_System.Forms
         private int _loginAttempts = 0;
         private int _forgottenAttempts = 0;
         private readonly IServiceProvider _serviceProvider;
+        
+
 
         public LoginForm(IUserService userService, IServiceProvider serviceProvider)
         {
+            
             _userService = userService;
             _serviceProvider = serviceProvider;
-
             // DEBUG: Create an admin user
             CreateAdminButton();
-
             InitializeComponent();
+
         }
 
         private void CreateAdminButton()

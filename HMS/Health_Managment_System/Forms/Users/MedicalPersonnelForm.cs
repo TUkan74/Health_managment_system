@@ -50,7 +50,7 @@ namespace Health_Managment_System.Forms
 
         private void btnAppointments_Click(object sender, EventArgs e)
         {
-            var AppointmentForm = new AppointmentsForm(_user,_userService);
+            var AppointmentForm = new AppointmentsForm(_user,_userService,true);
             AppointmentForm.ShowDialog();
         }
 

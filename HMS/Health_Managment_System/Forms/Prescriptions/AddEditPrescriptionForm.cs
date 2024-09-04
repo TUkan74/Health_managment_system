@@ -10,16 +10,16 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Health_Managment_System.Forms
+namespace Health_Managment_System.Forms.Prescriptions
 {
-    public partial class PrescriptionsForm : Form
+    public partial class AddEditPrescriptionForm : Form
     {
-        private User _user;
-        private IUserService _userService;
-        public PrescriptionsForm(User user,IUserService userService)
+        public AddEditPrescriptionForm(User user,IUserService userService,Prescription prescription)
         {
-            _user = user;
-            _userService = userService;
+            InitializeComponent();
+        }
+        public AddEditPrescriptionForm(User user, IUserService userService)
+        {
             InitializeComponent();
         }
     }

@@ -78,7 +78,7 @@ namespace Health_Managment_System.Forms
                 Location = new Point(350, 370),
                 Size = new Size(100, 30)
             };
-            //btnPrescriptions.Click += btnPrescriptions_Click;
+            btnPrescriptions.Click += btnPrescriptions_Click;
 
 
             // Medical Records button
@@ -219,7 +219,7 @@ namespace Health_Managment_System.Forms
             }
         }
 
-        /*private async void btnPrescriptions_Click(object sender, EventArgs e)
+        private async void btnPrescriptions_Click(object sender, EventArgs e)
         {
             if (dgvUsers.SelectedRows.Count > 0)
             {
@@ -230,7 +230,7 @@ namespace Health_Managment_System.Forms
                 // Check if the user was found
                 if (user != null)
                 {
-                    var prescriptionForm = new PrescriptionsForm(user, _userService,true);
+                    var prescriptionForm = new PrescriptionsForm(user, _userService, true);
                     prescriptionForm.ShowDialog();
                 }
                 else
@@ -242,7 +242,7 @@ namespace Health_Managment_System.Forms
             {
                 MessageBox.Show("Please select a user.");
             }
-        }*/
+        }
 
         private void btnMedicalRecords_Click(object sender, EventArgs e)
         {

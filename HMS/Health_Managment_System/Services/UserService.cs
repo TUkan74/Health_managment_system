@@ -265,6 +265,71 @@ namespace Health_Managment_System.Services
             }
         }
 
+        /// <summary>
+        /// Retrieves all prescriptions for a given patient record.
+        /// </summary>
+        /// <param name="patientRecordId">The ID of the patient record.</param>
+        /// <returns>A list of prescriptions associated with the patient.</returns>
+        public async Task<List<Prescription>> GetPrescriptionsByPatientIdAsync(int patientRecordId)
+        {
+            lock (_lock)
+            {
+                return _context.Prescriptions
+                    .Include(p => p.Doctor)
+                    .Where(p => p.PatientRecordId == patientRecordId)
+                    .ToList();
+            }
+        }
+
+        public async Task AddPrescriptionAsync(Prescription prescription)
+        {
+            lock (_lock)
+            {
+                _context.Prescriptions.Add(prescription);
+                _context.SaveChanges();
+            }
+        }
+
+        public async Task UpdatePrescriptionAsync(Prescription prescription)
+        {
+            lock (_lock)
+            {
+                var existingPrescription = _context.Prescriptions
+                    .FirstOrDefault(p => p.Id == prescription.Id);
+
+                if (existingPrescription == null)
+                {
+                    throw new Exception("Prescription not found.");
+                }
+
+                existingPrescription.DrugName = prescription.DrugName;
+                existingPrescription.Dosage = prescription.Dosage;
+                existingPrescription.UsageInstructions = prescription.UsageInstructions;
+                existingPrescription.DatePrescribed = prescription.DatePrescribed;
+                existingPrescription.DoctorId = prescription.DoctorId;
+
+                _context.SaveChanges();
+            }
+        }
+
+        
+        public async Task DeletePrescriptionAsync(int id)
+        {
+            lock (_lock)
+            {
+                var prescription = _context.Prescriptions.Find(id);
+                if (prescription != null)
+                {
+                    _context.Prescriptions.Remove(prescription);
+                    _context.SaveChanges();
+                }
+                else
+                {
+                    throw new Exception("Prescription not found.");
+                }
+            }
+        }
+
 
     }
 
