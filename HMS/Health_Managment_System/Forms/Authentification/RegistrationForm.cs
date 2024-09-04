@@ -12,6 +12,7 @@ namespace Health_Managment_System.Forms
         private readonly IUserService _userService;
         private bool _adminPermission;
 
+
         public RegistrationForm(IUserService userService,bool AdminPermission = false)
         {
             _userService = userService;
@@ -36,6 +37,8 @@ namespace Health_Managment_System.Forms
                 cmbRole.Enabled = false;
                 lblRole.Visible = false;
             }
+             
+            
             
         }
 

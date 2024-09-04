@@ -57,6 +57,7 @@
             btnAppointments.TabIndex = 2;
             btnAppointments.Text = "Appointments";
             btnAppointments.UseVisualStyleBackColor = true;
+            btnAppointments.Click += btnAppointments_Click;
             // 
             // btnAddPatients
             // 
@@ -66,6 +67,7 @@
             btnAddPatients.TabIndex = 3;
             btnAddPatients.Text = "Add Patients";
             btnAddPatients.UseVisualStyleBackColor = true;
+            btnAddPatients.Click += this.btnAddPatients_Click;
             // 
             // menuStrip1
             // 

@@ -47,5 +47,17 @@ namespace Health_Managment_System.Forms
             UserManagmentForm.ShowDialog();
 
         }
+
+        private void btnAppointments_Click(object sender, EventArgs e)
+        {
+            var AppointmentForm = new AppointmentsForm(_user,_userService);
+            AppointmentForm.ShowDialog();
+        }
+
+        private void btnAddPatients_Click(object sender, EventArgs e)
+        {
+            var RegistrationForm = new RegistrationForm(_userService, false);
+            RegistrationForm.ShowDialog();
+        }
     }
 }

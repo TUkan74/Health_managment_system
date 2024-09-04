@@ -69,6 +69,7 @@ namespace Health_Managment_System.Forms
                 Location = new Point(250, 370),
                 Size = new Size(100, 30)
             };
+            btnAppointments.Click += btnAppointments_Click;
 
             // Prescriptions button
             Button btnPrescriptions = new Button
@@ -77,6 +78,7 @@ namespace Health_Managment_System.Forms
                 Location = new Point(350, 370),
                 Size = new Size(100, 30)
             };
+            //btnPrescriptions.Click += btnPrescriptions_Click;
 
 
             // Medical Records button
@@ -202,7 +204,7 @@ namespace Health_Managment_System.Forms
                 // Check if the user was found
                 if (user != null)
                 {
-                    var appointmentForm = new AppointmentsForm(user, _userService);
+                    var appointmentForm = new AppointmentsForm(user, _userService,_adminPermissions);
                     appointmentForm.ShowDialog();
                 }
                 else

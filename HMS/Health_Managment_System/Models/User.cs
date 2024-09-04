@@ -10,6 +10,18 @@
         public string Email { get; set; }
         public int? PatientRecordId { get; set; }  // Foreign key to PatientRecord
         public PatientRecord PatientRecord { get; set; }  // Navigation property
-    }
 
+        // FullName property that combines FirstName and LastName from PatientRecord
+        public string FullName
+        {
+            get
+            {
+                if (PatientRecord != null)
+                {
+                    return $"{PatientRecord.FirstName} {PatientRecord.LastName}";
+                }
+                return Username; // Fallback to username if PatientRecord is not available
+            }
+        }
+    }
 }
