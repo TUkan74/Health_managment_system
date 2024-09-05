@@ -36,7 +36,7 @@ namespace Health_Managment_System.Forms
         {
             this.DialogResult = DialogResult.OK;
         }
-        
+
         // OLD ToolStripMenuItem
         private void PersonalInfoToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -75,6 +75,7 @@ namespace Health_Managment_System.Forms
             var personalInfoForm = new PersonalInfoformationForm(_user, _userService, false);
             personalInfoForm.ShowDialog();
         }
+
     }
 
     internal class PrescriptionForm
