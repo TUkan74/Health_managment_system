@@ -76,14 +76,14 @@ namespace Health_Managment_System.Forms.Templates
         }
 
         // Generic method for handling add operations
-        protected void HandleAdd(Action openFormAction)
+        protected async void HandleAdd(Action openFormAction)
         {
             openFormAction?.Invoke();
-            LoadDataAsync(); // Refresh the data after adding
+            await LoadDataAsync(); // Refresh the data after adding
         }
 
         // Generic method for handling edit operations
-        protected void HandleEdit(Func<T, bool> openFormAction)
+        protected async void HandleEdit(Func<T, bool> openFormAction)
         {
             if (_dataGridView.SelectedRows.Count > 0)
             {
@@ -92,7 +92,7 @@ namespace Health_Managment_System.Forms.Templates
                 {
                     if (openFormAction(selectedItem))
                     {
-                        LoadDataAsync(); // Refresh the data after editing
+                        await LoadDataAsync(); // Refresh the data after editing
                     }
                 }
                 else

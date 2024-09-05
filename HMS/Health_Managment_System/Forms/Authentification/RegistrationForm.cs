@@ -92,7 +92,7 @@ namespace Health_Managment_System.Forms
             {
                 Username = username,
                 PasswordHash = password,  // Hashing will be done in the UserService
-                Role = "Patient",
+                Role = role,
                 Email = email,
                 PatientRecord = new PatientRecord
                 {

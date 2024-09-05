@@ -13,6 +13,8 @@ namespace Health_Managment_System.Services
     {
         private readonly ApplicationDbContext _context;
         private readonly object _lock = new object();
+        //private readonly SemaphoreSlim _semaphore = new SemaphoreSlim(1, 1); 
+
 
         public UserService(ApplicationDbContext context)
         {
@@ -42,6 +44,29 @@ namespace Health_Managment_System.Services
                 return user;
             }
         }
+
+        /*
+        public async Task<User> AuthenticateAsync(string username, string password)
+        {
+            await _semaphore.WaitAsync();
+            try
+            {
+                var user = await _context.Users
+                    .Include(u => u.PatientRecord)
+                    .SingleOrDefaultAsync(u => u.Username == username);
+
+                if (user == null || !BCrypt.Net.BCrypt.Verify(password, user.PasswordHash))
+                {
+                    return null;
+                }
+
+                return user;
+            }
+            finally
+            {
+                _semaphore.Release();
+            }
+        }*/
 
         public async Task RegisterAsync(User user)
         {

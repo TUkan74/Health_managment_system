@@ -53,7 +53,7 @@ namespace Health_Managment_System
             {
                 var adminUser = new User
                 {
-                    Username = "administrator",
+                    Username = "admin",
                     PasswordHash = BCrypt.Net.BCrypt.HashPassword("admin123"), // Use a strong password in reality
                     Role = "Admin",
                     Email = "admin@asdadmin.com"
