@@ -128,10 +128,13 @@ namespace Health_Managment_System.Forms
             if (dgvMedicalHistory.SelectedRows.Count > 0)
             {
                 var selectedHistory = (MedicalHistory)dgvMedicalHistory.SelectedRows[0].DataBoundItem;
-                var editMedicalHistoryForm = new AddEditMedicalHistoryForm(_user, _userService, selectedHistory);
-                if (editMedicalHistoryForm.ShowDialog() == DialogResult.OK)
+                if (selectedHistory != null)
                 {
-                    LoadMedicalHistory(); // Refresh the list after editing
+                    var editMedicalHistoryForm = new AddEditMedicalHistoryForm(_user, _userService, selectedHistory);
+                    if (editMedicalHistoryForm.ShowDialog() == DialogResult.OK)
+                    {
+                        LoadMedicalHistory(); // Refresh the list after editing
+                    }
                 }
             }
             else
