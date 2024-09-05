@@ -13,9 +13,7 @@ using System.Windows.Forms;
 namespace Health_Managment_System.Forms
 {
 
-    /// <summary>
-    ///####################### ZMENIT DESIGN NA BUTTONY KTORE IDEME NA DASHBOARD, PATIENT RECORDS, PRESCRIPTIONS, MEDICAL HISTORY FORM ####################################
-    /// </summary>
+    
     public partial class PatientForm : Form
     {
         private User _user;

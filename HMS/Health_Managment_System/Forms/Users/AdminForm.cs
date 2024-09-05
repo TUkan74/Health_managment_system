@@ -34,5 +34,15 @@ namespace Health_Managment_System.Forms
             var PersonnelManagmentForm = new UserManagmentForm(_userService, AdminPermissions: true, OnlyPersonnel: true);
             PersonnelManagmentForm.ShowDialog();
         }
+
+        private void logoutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.OK;
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.Cancel;
+        }
     }
 }
